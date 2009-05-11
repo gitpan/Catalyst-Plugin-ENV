@@ -1,6 +1,8 @@
 package Catalyst::Plugin::ENV;
 use strict;
 
+our $VERSION = 0.02;
+
 sub get_env_value {
     my ($c,$name) = @_;
     my ($value,$env);
@@ -9,8 +11,11 @@ sub get_env_value {
         my $name = shift;
         my $env = shift;
         my $res;
-        if( defined $env->{$name} ){
+        if( defined $name && defined $env->{$name} ){
             $res = $env->{$name};
+        }
+        else {
+            $res = $env;
         }
         return $res;
     };
@@ -64,7 +69,7 @@ If array ref - array ref to get value from environment
 
 =head1 AUTHOR
 
- PLCGI C<plcgi1@gmail.com>
+ PLCGI C<plcgi1 (-) gmail.com>
 
 =head1 LICENSE
 
